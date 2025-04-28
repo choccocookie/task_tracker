@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "users",
+    "tasks",
     "django_celery_beat",
 
     'rest_framework',
