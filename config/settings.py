@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "users",
     "tasks",
+    'employees',
     "django_celery_beat",
 
     'rest_framework',
