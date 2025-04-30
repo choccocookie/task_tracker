@@ -10,3 +10,6 @@ class Employee(models.Model):
         verbose_name = "Работник"
         verbose_name_plural = "Работники"
 
+    def __str__(self):
+        return self.full_name
+
