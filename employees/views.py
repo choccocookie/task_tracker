@@ -1,6 +1,7 @@
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from .models import Employee
-from .serializers import EmployeeSerializer
+from .serializers import EmployeeSerializer, EmployeeWorkLoadSerializer
+from django.db.models import Count, Q
 
 class EmployeeCreateView(CreateAPIView):
     queryset = Employee.objects.all()
@@ -21,3 +22,14 @@ class EmployeeUpdateView(UpdateAPIView):
 class EmployeeDestroyView(DestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
+class EmployeeWorkLoadView(ListAPIView):
+    serializer_class = EmployeeWorkLoadSerializer
+
+    def get_queryset(self):
+        return Employee.objects.annotate(
+            active_tasks_count=Count(
+                'tasks',
+                filter=Q(tasks__status__in=['new', 'in_progress'])
+            )
+        ).order_by('-active_tasks_count')

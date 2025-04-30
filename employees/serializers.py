@@ -7,7 +7,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class EmployeeWorkLoadSerializer(serializers.ModelSerializer):
-    active_task_count = serializers.IntegerField()
+    active_tasks_count = serializers.IntegerField()
 
     class Meta:
         model = Employee

@@ -5,6 +5,7 @@ from .views import (
     EmployeeRetrieveView,
     EmployeeUpdateView,
     EmployeeDestroyView,
+    EmployeeWorkLoadView,
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path('<int:pk>/', EmployeeRetrieveView.as_view(), name='employee-detail'),
     path('<int:pk>/update/', EmployeeUpdateView.as_view(), name='employee-update'),
     path('<int:pk>/delete/', EmployeeDestroyView.as_view(), name='employee-delete'),
+    path('workload/', EmployeeWorkLoadView.as_view(), name='employee-workload'),
 ]
