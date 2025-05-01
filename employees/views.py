@@ -1,6 +1,7 @@
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from .models import Employee
 from .serializers import EmployeeSerializer, EmployeeWorkLoadSerializer
+from .paginators import StandardResultsSetPagination
 from django.db.models import Count, Q
 
 class EmployeeCreateView(CreateAPIView):
@@ -10,6 +11,7 @@ class EmployeeCreateView(CreateAPIView):
 class EmployeeListView(ListAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    pagination_class = StandardResultsSetPagination
 
 class EmployeeRetrieveView(RetrieveAPIView):
     queryset = Employee.objects.all()
@@ -25,6 +27,7 @@ class EmployeeDestroyView(DestroyAPIView):
 
 class EmployeeWorkLoadView(ListAPIView):
     serializer_class = EmployeeWorkLoadSerializer
+    pagination_class = StandardResultsSetPagination
 
     def get_queryset(self):
         return Employee.objects.annotate(
