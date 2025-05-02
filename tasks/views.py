@@ -2,7 +2,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView,
 from .models import Task
 from .serializers import TaskSerializer, ImportantTaskSerializer
 from employees.models import Employee
-from django.db.models import Q, Count, F
+from django.db.models import Q, Count
 
 
 class TaskCreateView(CreateAPIView):
@@ -51,7 +51,6 @@ class ImportantTasksView(ListAPIView):
             if employee_load.exists() else None
         )
 
-
         result = []
 
         for task in important_tasks:
@@ -61,7 +60,6 @@ class ImportantTasksView(ListAPIView):
             dependent_employees = (
                 {task.parent_task.assignee} if task.parent_task and task.parent_task.assignee else set()
             )
-
 
             for employee in dependent_employees:
                 employee_task_count = employee.tasks.filter(status__in=['new', 'in_progress']).count()
