@@ -1,6 +1,7 @@
 from django.db import models
 from employees.models import Employee
 
+
 class Task(models.Model):
     STATUS_CHOICES = [
         ('new', 'Новая'),

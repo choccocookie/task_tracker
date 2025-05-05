@@ -4,26 +4,32 @@ from .serializers import EmployeeSerializer, EmployeeWorkLoadSerializer
 from .paginators import StandardResultsSetPagination
 from django.db.models import Count, Q
 
+
 class EmployeeCreateView(CreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
 
 class EmployeeListView(ListAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     pagination_class = StandardResultsSetPagination
 
+
 class EmployeeRetrieveView(RetrieveAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
 
 class EmployeeUpdateView(UpdateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
+
 class EmployeeDestroyView(DestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+
 
 class EmployeeWorkLoadView(ListAPIView):
     serializer_class = EmployeeWorkLoadSerializer

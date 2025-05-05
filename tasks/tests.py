@@ -86,8 +86,7 @@ class TaskValidationTests(APITestCase):
         data = {
             "title": "Подзадача с неверной датой",
             "due_date": self.parent_task.due_date + timedelta(days=2),
-            "parent_task": self.parent_task.id
-        }
+            "parent_task": self.parent_task.id}
         response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("Срок подзадачи не может быть позже срока родительской задачи.", str(response.data))

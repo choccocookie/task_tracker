@@ -79,4 +79,3 @@ class ImportantTasksView(ListAPIView):
             })
 
         return result
-
